@@ -8,12 +8,11 @@ dotenv.config();
 
 const app = express();
 
-// Explicit CORS configuration
 const allowedOrigins = [
-  "http://localhost:5173", // Local React dev
-  "https://bryswu.github.io", // GitHub Pages (update if you deploy there)
-  "https://route-optimizer-front.bryswu.com" // Example custom domain, update as needed
+  "http://localhost:5173",
+  "https://bryswu.github.io",
 ];
+
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "OPTIONS"],
@@ -22,12 +21,10 @@ app.use(cors({
 
 app.use(express.json());
 
-// Health check
 app.get("/", (req, res) => {
   res.send("Route optimizer backend is running.");
 });
 
-// API Routes
 app.use("/api/optimize", optimizeRouter);
 
 const PORT = process.env.PORT || 8080;
