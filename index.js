@@ -7,7 +7,19 @@ import { logger } from "./utils/logger.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// Explicit CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173", // Local React dev
+  "https://bryswu.github.io", // GitHub Pages (update if you deploy there)
+  "https://route-optimizer-front.bryswu.com" // Example custom domain, update as needed
+];
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 app.use(express.json());
 
 // Health check
