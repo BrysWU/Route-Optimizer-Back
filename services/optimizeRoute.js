@@ -14,7 +14,8 @@ export async function optimizeRoute(jobs, vehicle) {
     url,
     {
       jobs,
-      vehicles: [vehicle]
+      vehicles: [vehicle],
+      profile: "driving-car" // Use the correct profile for the ORS optimization endpoint
     },
     {
       headers: {
